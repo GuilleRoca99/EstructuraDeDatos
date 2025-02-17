@@ -1,0 +1,162 @@
+MAIN
+#include <iostream>
+#include "Cuadrado.h"
+#include "Circulo.h"
+#include "Paralelogramo.h"
+using namespace std;
+int main()
+{
+	float lado, radio, base, altura;
+	int opcion;
+	//Creando un objeto
+	Cuadrado cuadradito;
+	Circulo circulito;
+	Paralelogramo paralelito;
+
+//Menú
+	do
+	{
+		cout << "MENU"<<endl;
+		cout << "1. Circulo" << endl;
+		cout << "2. Cuadrado" << endl;
+		cout << "3. Paralelogramo" << endl;
+		cout << "0. Salir" << endl;
+		cout << "Ingrese la opcion: ";
+		cin >> opcion;
+
+		switch (opcion) {
+		case 1: 
+			cout << "Ingrese un radio: ";
+			cin >> radio;
+			circulito.set_Circulo(radio);
+			cout << "El area es: " << circulito.Area_Circulo() << endl;
+			break;
+		case 2:	
+			cout << "Ingrese un lado: ";
+			cin >> lado;
+			cuadradito.set_lado(lado);
+			cout<<"El area es: "<<cuadradito.Calcular_area()<<endl;
+			break;
+		case 3:	
+			cout << "Ingrese la base: ";
+			cin >> base;
+			cout << "Ingrese la altura: ";
+			cin >> altura;
+			paralelito.set_baseParalelogramo(base);
+			paralelito.set_alturaParalelogramo(altura);
+			cout << "El area es: " << paralelito.areaPa() << endl;
+			break;
+		case 0: 
+			cout << "Saliendo..." << endl;
+			break;
+		}
+	} while (opcion!=0);
+}
+
+
+Cuadrado.h
+#pragma once
+class Cuadrado
+{
+private:
+	float lado;
+public:
+	Cuadrado();
+	float get_lado();	//devuelve el valor del lado
+	void set_lado(float _lado);
+	float Calcular_area();
+};
+
+
+Cuadrado.cpp
+#include "Cuadrado.h"
+
+Cuadrado::Cuadrado() {
+}
+float Cuadrado::get_lado() {
+	return lado;
+}	
+void Cuadrado::set_lado(float _lado) {
+	lado = _lado;
+}
+float Cuadrado::Calcular_area() {
+	return lado * lado;
+}
+
+
+Circulo.h
+#pragma once
+class Circulo
+{
+private:
+	float radio;
+public:
+	Circulo();
+	void set_Circulo(float radio_Circulo);
+	float get_Circulo();
+	float Area_Circulo();
+};
+
+
+Circulo.cpp
+#include "Circulo.h"
+#include <math.h>
+
+Circulo::Circulo() {
+
+}
+
+void Circulo::set_Circulo(float radio_Circulo) {
+	radio = radio_Circulo;
+}
+
+float Circulo::get_Circulo() {
+	return radio;
+}
+
+float Circulo::Area_Circulo() {
+	return (pow(radio, 2) * 3.1415);
+}
+
+
+Paralelogramo.h
+#pragma once
+class Paralelogramo
+{
+private:
+	float basePa;
+	float alturaPa;
+public:
+	Paralelogramo();
+	void set_baseParalelogramo(float base_Par);
+	void set_alturaParalelogramo(float altura_Par);
+	float get_basePa();
+	float get_alturaPa();
+	float areaPa();
+
+};
+
+
+Paralelogramo.cpp
+#include "Paralelogramo.h"
+Paralelogramo::Paralelogramo() {
+
+}
+
+void Paralelogramo::set_baseParalelogramo(float base_Par) {
+	basePa = base_Par;
+}
+
+void Paralelogramo::set_alturaParalelogramo(float altura_Par) {
+	alturaPa = altura_Par;
+}
+
+float Paralelogramo::get_basePa() {
+	return basePa;
+}
+float Paralelogramo::get_alturaPa() {
+	return alturaPa;
+}
+float Paralelogramo::areaPa() {
+	return (basePa * alturaPa);
+}
